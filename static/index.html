@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>NMGIC 2019 / Alex G Rice</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reset.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/white.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/lib/css/zenburn.min.css">
+	<link rel="stylesheet" href="overrides.css">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/print/pdf.min.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/print/paper.min.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h3><a href="https://nmgic.com/">NMGIC</a> 2019-11-01
+					Visualizing Open Data</h3>
+					<em>Serverless single page web app development using Mapbox,
+						Netlify, React and TypeScript</em>
+
+					<p>
+						Alex G Rice
+						<br />
+						<a href="https://ricegeo.dev">ricegeo.dev</a>
+					</p>
+			</section>
+			<section>
+				<h3>Links</h3>
+				<p>
+					<em>Try out the app:</em>
+					<br />
+					<a href="https://nmgic2019.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+						https://nmgic2019.ricegeo.dev
+					</a>
+				</p>
+				<p>
+					<em>This presentation:</em>
+					<br />
+					<a href="https://nmgic2019-presentation.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+						https://nmgic2019-presentation.ricegeo.dev
+					</a>
+				</p>
+
+			</section>
+			<section data-markdown>
+				## Preview
+
+				![screenshot](images/deployed1.png "web app")
+			</section>
+
+			<section data-markdown>
+				TODO links
+				### Background
+
+				- Build a production-ready website at no cost. Use all open-source tools and visualize Open Data.
+				-Netlify and Mapbox both have generous free pricing tiers,
+				and they support Open Source Software, ensuring no vendor
+				lock-in can occur.
+				-React Js, Mapbox GL Js, and TypeScript are some of the most
+				widely used technologies for web apps today.
+
+			</section>
+
+			<section data-markdown>
+				## Find Open Data!
+				[FEMA Risk Map Products/Rio Chama
+				Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
+				![screenshot](images/find-data-rgis.png "RGIS")
+			</section>
+
+			<section data-markdown>
+				## Find Open Data!
+				[Microsoft US Building Footprints](https://github.com/microsoft/USBuildingFootprints)
+				![screenshot](images/find-data-microsoft.png "Github")
+			</section>
+
+			<section data-markdown>
+				[Analysis: FEMA Risk Map Products/Rio Chama
+				Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
+
+				![flowchart](images/edac-workflow.png "EDAC workflow")
+			</section>
+
+			<section data-markdown>
+				[Analysis: Microsoft US Building Footprints](https://github.com/microsoft/USBuildingFootprints)
+
+				![image](images/segmentation.png "MS workflow 1")
+				![image](images/polygonization.png "MS workflow 2")
+			</section>
+
+
+			<section data-markdown>
+				### Rest!
+				TODO : dino image
+
+				There is no cloud, it is someone else's computer!
+			</section>
+
+
+			<section data-markdown>
+				### Preview data in [QGIS](https://qgis.org) ⚡️
+
+				![image](images/qgis.png "QGIS")
+			</section>
+
+			<section data-markdown>
+				### Looks interesting enough to proceed!
+
+				Some questions to think about for both datasets:
+
+				- Missing features?
+				- False positives?
+				- Wrong size, shape, orientation?
+			</section>
+
+			<section data-markdown>
+				TODO links
+
+				### Create free accounts on
+
+				- Netlify
+				- Mapbox
+				- Github (optional)
+			</section>
+
+			<section data-markdown>
+				TODO links
+
+				### Locally install required software
+
+				- Node.Js
+				- NPM and/or Yarn (I prefer Yarn)
+				- Tippecanoe (works best on Linux or OS X, or Docker)
+				- See my Dockerfile in github repo if you use Docker
+				- Git client (optional)
+			</section>
+
+			<section data-markdown>
+				### Download data and transform GeoJson files into mbtiles
+				format using Tippecanoe
+
+				```bash
+				curl -O https://usbuildingdata.blob.core.windows.net/usbuildings-v1-1/NewMexico.zip
+				unzip NewMexico.zip
+				tippecanoe -o microsoft.mbtiles NewMexico.geojson
+
+				curl -o edac.zip \
+					https://gstore.unm.edu/apps/rgis/datasets/2b858f98-72f0-4559-8933-3bed05a554e9/Rio_Chama_Watershed_Building_Footprints.derived.geojson
+				unzip edac.zip
+				tippecanoe -o edac.mbtiles \
+					Rio_Chama_Watershed_Building_Footprints.geojson
+				```
+			</section>
+
+			<section data-markdown>
+				### Create Mapbox tilesets
+				At [studio.mapbox.com](https://studio.mapbox.com) create two
+				tilesets by uploading edac.mbtiles and microsoft.mbtiles.
+				![image](images/mapbox-tilesets.png "Mapbox Tilesets")
+			</section>
+
+			<section data-markdown>
+				### Create Mapbox styles
+
+				At [studio.mapbox.com](https://studio.mapbox.com) create a style
+				for each tileset.
+
+				![image](images/mapbox-styles.png "Mapbox Styles")
+			</section>
+
+			<section data-markdown>
+				### Create a Mapbox access token
+
+				At [account.mapbox.com](https://account.mapbox.com) create a new
+				access token. It is OK to accept all the default settings for
+				now. The access_token is a string in this format. This is a
+				deleted token, so do not use this one.
+				<pre>
+					<code data-trim>
+					pk.eyJ1IjoiYWdyIiwiYSI6ImNrMmNkM3ZhNTAwcWgzY2xvdHYyN3h4a2wifQ.frqeQgakGUmOroY3vTLy_Q
+					</code>
+				</pre>
+
+				🗝 save yours for later
+			</section>
+
+			<section data-markdown>
+				### On your local dev machine, create a new React app
+
+				```bash
+				yarn global add create-react-app
+				create-react-app nmgic2019 --typescript
+				cd nmgic2019
+				yarn start
+				```
+
+				open browser at http://localhost:3000
+			</section>
+
+			<section data-markdown>
+				### Congratulations you are a React.Js developer 🥳
+				![image](images/react-hello.png "Create React App")
+			</section>
+
+			<section data-markdown>
+				### Review create-react-app
+
+				`public/index.html` comments removed
+
+				```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8" /&gt;
+		&lt;link rel="icon" href="%PUBLIC_URL%/favicon.ico" /&gt;
+		&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+		&lt;meta name="theme-color" content="#000000" /&gt;
+		&lt;meta
+			name="description"
+			content="Web site created using create-react-app"
+		/&gt;
+		&lt;link rel="apple-touch-icon" href="logo192.png" /&gt;
+		&lt;link rel="manifest" href="%PUBLIC_URL%/manifest.json" /&gt;
+		&lt;title&gt;React App&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;
+		&lt;div id="root"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+				```
+			</section>
+
+		<section data-markdown>
+			### Review create-react-app
+
+			`src/index.tsx`, comments removed
+
+			```typescript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+serviceWorker.unregister();		
+```
+		</section>
+
+		<section data-markdown>
+			### Review create-react-app
+
+			`src/App.tsx`, comments removed
+
+			```typescript
+			import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+const App: React.FC = () =&gt; {
+  return (
+    &lt;div className="App"&gt;
+      &lt;header className="App-header"&gt;
+        &lt;img src={logo} className="App-logo" alt="logo" /&gt;
+        &lt;p&gt;
+          Edit &lt;code&gt;src/App.tsx&lt;/code&gt; and save to reload.
+        &lt;/p&gt;
+        &lt;a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        &gt;
+          Learn React
+        &lt;/a&gt;
+      &lt;/header&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+			```
+		</section>
+
+
+		<section data-markdown>
+			### Review create-react-app
+
+			`src/App.css`, comments removed
+
+			```css
+			.App {
+				text-align: center;
+			  }
+			  
+			.App-logo {
+				height: 40vmin;
+			}
+			
+			.App-header {
+				background-color: #282c34;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: calc(10px + 2vmin);
+				color: white;
+			}
+			
+			.App-link {
+				color: #09d3ac;
+			}			  
+			```
+		</section>
+
+		<section data-markdown>
+				### Add required JavaScript and TypeScript packages and restart development web server.
+
+				```bash
+				yarn add mapbox-gl @types/mapbox-gl
+				export REACT_APP_MAPBOX_ACCESS_TOKEN=*****
+				yarn start
+				```
+		</section>
+
+			<section data-markdown>
+				### Rest!
+				TODO : dino image
+
+				There is no serverless, it's someone else's container!
+			</section>
+
+			<section data-markdown>
+				Create Map component
+			</section>
+
+			<section data-markdown>
+				Create Legend component
+			</section>
+
+			<section data-markdown>
+				Edit App component and CSS
+			</section>
+
+			<section data-markdown>
+				Edit index.html
+			</section>
+
+			<section data-markdown>
+				### open browser at http://localhost:3000
+			</section>
+
+			<section data-markdown>
+				### Diving in to Netlify
+
+				😂 Production grade stuff offering that "just works"! This is
+				not the same as throwing some content on Amazon S3 or Github
+				Pages.
+
+				- Http server
+				- Cache invalidation
+				- Content Distribution Network (CDN)
+				- Continuous Deployment (CI/CD)
+				- Domain name service (DNS)
+				- SSL/TLS certificate
+				- Add ons like Functions, Forms, Auth, Analytics
+			</section>
+
+			<section data-markdown>
+				Drag-n-drop build folder to Netlify
+
+				If it takes more than a minute to complete, cancel and retry. Deploy times vary
+				but average about ~few seconds.
+			</section>
+
+			<section data-markdown>
+				Security notes re: Mapbox access_token
+
+				- Mapbox access_tokens can and should be restricted by scope and origin!
+				- Never put an access_token in source code.
+				- Use an environment variables.
+			</section>
+
+			<section data-markdown>
+				- Add REACT_APP_MAPBOX_ACCESS_TOKEN environment variable to Netlify site settings
+			</section>
+
+			<section data-markdown>
+				Drag-n-drop build folder to Netlify Site (to trigger new build with environment variable)
+
+				- Pro Tip: Connect a GitHub repository to your site for Continuous Integration/ Continuous Delivery.
+			</section>
+
+			<section data-markdown>
+			</section>
+
+			<section data-markdown>
+			</section>
+
+			<section data-markdown>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.min.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/marked.js' },
+				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/markdown.min.js' },
+				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/notes/notes.min.js', async: true },
+				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/highlight/highlight.min.js', async: true }
+			]
+		});
+		setTimeout(() => Reveal.slide(22), 200);
+
+	</script>
+</body>
+
+</html>
