@@ -124,7 +124,7 @@
 			<section data-markdown>
 				### Looks interesting enough to proceed!
 
-				Some questions to think about for both datasets:
+				Some questions to think about when comparing the two datasets:
 
 				- Missing features?
 				- False positives?
@@ -223,7 +223,7 @@
 			<section data-markdown>
 				### Review create-react-app
 
-				`public/index.html` comments removed
+				`public/index.html`
 
 				```html
 &lt;!DOCTYPE html&gt;
@@ -252,7 +252,7 @@
 		<section data-markdown>
 			### Review create-react-app
 
-			`src/index.tsx`, comments removed
+			`src/index.tsx`
 
 			```typescript
 import React from 'react';
@@ -269,7 +269,7 @@ serviceWorker.unregister();
 		<section data-markdown>
 			### Review create-react-app
 
-			`src/App.tsx`, comments removed
+			`src/App.tsx`
 
 			```typescript
 			import React from 'react';
@@ -305,7 +305,7 @@ export default App;
 		<section data-markdown>
 			### Review create-react-app
 
-			`src/App.css`, comments removed
+			`src/App.css`
 
 			```css
 			.App {
@@ -341,10 +341,12 @@ export default App;
 				export REACT_APP_MAPBOX_ACCESS_TOKEN=*****
 				yarn start
 				```
+
+				Replace `*****` with your Mapbox access_token.
 		</section>
 
 			<section data-markdown>
-				### Rest!
+				### Breath &amp; Rest!
 				TODO : dino image
 
 				There is no serverless, it's someone else's container!
@@ -355,33 +357,42 @@ export default App;
 			</section>
 
 			<section data-markdown>
-				Create Legend component
+					### Security notes re: Mapbox access_token
+	
+					- Mapbox access_token can and should be restricted by scope and origin! See
+						[account.mapbox.com](https://account.mapbox.com).
+					- Never put an access_token in source code.
+					- Use an environment variable.
+				</section>
+	
+			<section data-markdown>
+				### Create Legend component
 			</section>
 
 			<section data-markdown>
-				Edit App component and CSS
+				### Edit App component and CSS
 			</section>
 
 			<section data-markdown>
-				Edit index.html
+				### Edit index.html
 			</section>
 
 			<section data-markdown>
-				### open browser at http://localhost:3000
+				### Preview it!
+				
+				- open browser at http://localhost:3000
 			</section>
 
 			<section data-markdown>
 				### Diving in to Netlify
 
-				😂 Production grade stuff offering that "just works"! This is
-				not the same as throwing some content on Amazon S3 or Github
-				Pages.
+				Production grade offering that really "just works"!  😂 
 
-				- Http server
+				- HTTP server
 				- Cache invalidation
 				- Content Distribution Network (CDN)
 				- Continuous Deployment (CI/CD)
-				- Domain name service (DNS)
+				- Domain Name System (DNS)
 				- SSL/TLS certificate
 				- Add ons like Functions, Forms, Auth, Analytics
 			</section>
@@ -389,26 +400,22 @@ export default App;
 			<section data-markdown>
 				Drag-n-drop build folder to Netlify
 
-				If it takes more than a minute to complete, cancel and retry. Deploy times vary
-				but average about ~few seconds.
+				If it takes more than a minute to finish deployment, cancel and
+				retry. Deploy times seem to vary but average about ~few seconds.
 			</section>
 
 			<section data-markdown>
-				Security notes re: Mapbox access_token
+				### Add the access_token
 
-				- Mapbox access_tokens can and should be restricted by scope and origin!
-				- Never put an access_token in source code.
-				- Use an environment variables.
-			</section>
+				Add REACT_APP_MAPBOX_ACCESS_TOKEN environment variable to Netlify site settings
+				</section>
 
 			<section data-markdown>
-				- Add REACT_APP_MAPBOX_ACCESS_TOKEN environment variable to Netlify site settings
-			</section>
-
-			<section data-markdown>
+				### Re-deploy
 				Drag-n-drop build folder to Netlify Site (to trigger new build with environment variable)
 
 				- Pro Tip: Connect a GitHub repository to your site for Continuous Integration/ Continuous Delivery.
+				  Every push to `master` will trigger a new deployment.
 			</section>
 
 			<section data-markdown>
@@ -438,7 +445,7 @@ export default App;
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/highlight/highlight.min.js', async: true }
 			]
 		});
-		setTimeout(() => Reveal.slide(22), 200);
+		setTimeout(() => Reveal.slide(25), 200);
 
 	</script>
 </body>
