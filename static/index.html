@@ -30,64 +30,76 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<h3><a href="https://nmgic.com/">NMGIC</a> 2019-11-01
-					Visualizing Open Data</h3>
-					<em>Serverless single page web app development using Mapbox,
-						Netlify, React and TypeScript</em>
+			<section  data-markdown>
+				## [NMGIC](https://nmgic.com) 2019-11-01
 
-					<p>
-						Alex G Rice
-						<br />
-						<a href="https://ricegeo.dev">ricegeo.dev</a>
-					</p>
+				### Visualizing Open Data
+
+				Serverless single page web app development using Mapbox,
+				Netlify, React and TypeScript
+
+				Alex G Rice
+
+				[ricegeo.dev](https://ricegeo.dev)
 			</section>
 			<section>
 				<h3>Links</h3>
-				<p>
-					<em>Try out the app:</em>
-					<br />
-					<a href="https://nmgic2019.ricegeo.dev" target="_blank" rel="noopener noreferrer">
-						https://nmgic2019.ricegeo.dev
-					</a>
-				</p>
-				<p>
-					<em>This presentation:</em>
-					<br />
-					<a href="https://nmgic2019-presentation.ricegeo.dev" target="_blank" rel="noopener noreferrer">
-						https://nmgic2019-presentation.ricegeo.dev
-					</a>
-				</p>
-
+				<small>
+					<table>
+							<thead>
+								<tr>
+									<th>Deployment</th>
+									<th>GitHub Repository</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="https://nmgic2019.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+										nmgic2019.ricegeo.dev
+									</a></td>
+									<td><a href="https://github.com/guidorice/nmgic2019" target="_blank" rel="noopener noreferrer">
+											github.com/guidorice/nmgic2019
+									</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://nmgic2019-presentation.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+										nmgic2019-presentation.ricegeo.dev
+									</a></td>
+									<td><a href="https://github.com/guidorice/nmgic2019-presentation" target="_blank" rel="noopener noreferrer">
+										github.com/guidorice/nmgic2019-presentation
+									</a></td>
+								</tr>
+								
+							</tbody>
+					</table>
+				</small>				
 			</section>
 			<section data-markdown>
 				## Preview
 
-				![screenshot](images/deployed1.png "web app")
+				![screenshot](images/deployment-custom-domain.png "web app")
 			</section>
 
 			<section data-markdown>
-				TODO links
 				### Background
 
-				- Build a production-ready website at no cost. Use all open-source tools and visualize Open Data.
-				-Netlify and Mapbox both have generous free pricing tiers,
-				and they support Open Source Software, ensuring no vendor
-				lock-in can occur.
-				-React Js, Mapbox GL Js, and TypeScript are some of the most
+				- Build a production-ready website at practically no cost. [Netlify](https://netlify.com) and [Mapbox](https://www.mapbox.com/) both have generous free pricing tiers.
+				- Use Open Standards and Open Source Software, ensuring no vendor lock-in can occur.
+				-[React Js](https://reactjs.org/), 
+				[Mapbox GL Js](https://docs.mapbox.com/mapbox-gl-js/overview/), 
+				and [TypeScript](https://www.typescriptlang.org/) are some of the most
 				widely used technologies for web apps today.
-
 			</section>
 
 			<section data-markdown>
-				## Find Open Data!
+				## Open Data! 1 of 2
 				[FEMA Risk Map Products/Rio Chama
 				Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
 				![screenshot](images/find-data-rgis.png "RGIS")
 			</section>
 
 			<section data-markdown>
-				## Find Open Data!
+				## Open Data! 2 of 2
 				[Microsoft US Building Footprints](https://github.com/microsoft/USBuildingFootprints)
 				![screenshot](images/find-data-microsoft.png "Github")
 			</section>
@@ -104,16 +116,9 @@
 
 				![image](images/segmentation.png "MS workflow 1")
 				![image](images/polygonization.png "MS workflow 2")
+
+				© Microsoft 2019 - Creative Commons Attribution 4.0 International Public License
 			</section>
-
-
-			<section data-markdown>
-				### Rest!
-				TODO : dino image
-
-				There is no cloud, it is someone else's computer!
-			</section>
-
 
 			<section data-markdown>
 				### Preview data in [QGIS](https://qgis.org) ⚡️
@@ -154,18 +159,22 @@
 			</section>
 
 			<section data-markdown>
-				### Download data and transform GeoJson files into mbtiles
-				format using Tippecanoe
+				### Download data and transform GeoJson files into mbtiles format using Tippecanoe
 
 				```bash
 				curl -O https://usbuildingdata.blob.core.windows.net/usbuildings-v1-1/NewMexico.zip
 				unzip NewMexico.zip
-				tippecanoe -o microsoft.mbtiles NewMexico.geojson
+				tippecanoe -zg -o ms-nm-buildings.mbtiles \
+					--drop-densest-as-needed \
+					--extend-zooms-if-still-dropping \
+					NewMexico.geojson
 
 				curl -o edac.zip \
 					https://gstore.unm.edu/apps/rgis/datasets/2b858f98-72f0-4559-8933-3bed05a554e9/Rio_Chama_Watershed_Building_Footprints.derived.geojson
 				unzip edac.zip
-				tippecanoe -o edac.mbtiles \
+				tippecanoe -zg -o edac-rio-chama-buildings-optimized.mbtiles \
+					--drop-densest-as-needed \
+					--extend-zooms-if-still-dropping \
 					Rio_Chama_Watershed_Building_Footprints.geojson
 				```
 			</section>
@@ -187,6 +196,14 @@
 			</section>
 
 			<section data-markdown>
+				### Publish Mapbox styles
+
+				At [studio.mapbox.com](https://studio.mapbox.com) publish each style.
+
+				![image](images/mapbox-publish-style.png "Mapbox Styles")
+				</section>
+
+			<section data-markdown>
 				### Create a Mapbox access token
 
 				At [account.mapbox.com](https://account.mapbox.com) create a new
@@ -200,6 +217,12 @@
 				</pre>
 
 				🗝 save yours for later
+			</section>
+
+			<section data-markdown data-background-image="https://media.giphy.com/media/YyT25O8a7KxYQ/giphy.gif">
+				## Intermission
+				
+				### "There is no cloud, it is just someone else's computer!"
 			</section>
 
 			<section data-markdown>
@@ -345,16 +368,9 @@ export default App;
 				Replace `*****` with your Mapbox access_token.
 		</section>
 
-			<section data-markdown>
-				### Breath &amp; Rest!
-				TODO : dino image
-
-				There is no serverless, it's someone else's container!
-			</section>
-
-			<section data-markdown>
-				Create Map component
-			</section>
+		<section data-markdown>
+			Create Map component
+		</section>
 
 			<section data-markdown>
 					### Security notes re: Mapbox access_token
@@ -365,6 +381,11 @@ export default App;
 					- Use an environment variable.
 				</section>
 	
+
+		<section data-markdown>
+				Create Mapbox Options and Style modules
+			</section>
+				
 			<section data-markdown>
 				### Create Legend component
 			</section>
@@ -383,25 +404,30 @@ export default App;
 				- open browser at http://localhost:3000
 			</section>
 
-			<section data-markdown>
-				### Diving in to Netlify
-
-				Production grade offering that really "just works"!  😂 
-
-				- HTTP server
-				- Cache invalidation
-				- Content Distribution Network (CDN)
-				- Continuous Deployment (CI/CD)
-				- Domain Name System (DNS)
-				- SSL/TLS certificate
-				- Add ons like Functions, Forms, Auth, Analytics
+			<section data-markdown data-background-image="https://media.giphy.com/media/ZcJ9RjNS2ShelvdMDX/giphy.gif">
+				## Intermission
+				
+				### "There is no serverless, it is just someone else's container!"
 			</section>
 
 			<section data-markdown>
-				Drag-n-drop build folder to Netlify
+				### 📦 Build for deployment
 
-				If it takes more than a minute to finish deployment, cancel and
-				retry. Deploy times seem to vary but average about ~few seconds.
+				```bash
+				yarn build
+				```
+
+				Now a `build/` folder exists containing the optimized app.
+			</section>
+
+			<section data-markdown>
+				### Deployment at [app.netlify.com](https://app.netlify.com)
+
+				Simply drag-n-drop or upload `build/` folder to create new Netlify site.
+
+				- Deploy times seem to vary but average about ~few seconds.
+				- ⚡️️ Tip: Don't like drag-n-drop? Connect a GitHub repository to your site for CI/CD.
+				  Every push to `master` will trigger a new build and deployment.
 			</section>
 
 			<section data-markdown>
@@ -412,16 +438,17 @@ export default App;
 
 			<section data-markdown>
 				### Re-deploy
-				Drag-n-drop build folder to Netlify Site (to trigger new build with environment variable)
-
-				- Pro Tip: Connect a GitHub repository to your site for Continuous Integration/ Continuous Delivery.
-				  Every push to `master` will trigger a new deployment.
+				Upload build folder to Netlify Site (to trigger new build with environment variable).
 			</section>
 
 			<section data-markdown>
+				### Preview at netlify subdomain
+
+				TODO image
 			</section>
 
 			<section data-markdown>
+				### Denial of Wallet attacks?
 			</section>
 
 			<section data-markdown>
@@ -438,6 +465,7 @@ export default App;
 		// - https://github.com/hakimel/reveal.js#configuration
 		// - https://github.com/hakimel/reveal.js#dependencies
 		Reveal.initialize({
+			transition: 'none',
 			dependencies: [
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/marked.js' },
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/markdown.min.js' },
@@ -445,7 +473,7 @@ export default App;
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/highlight/highlight.min.js', async: true }
 			]
 		});
-		setTimeout(() => Reveal.slide(25), 200);
+		setTimeout(() => Reveal.slide(20), 200);
 
 	</script>
 </body>
