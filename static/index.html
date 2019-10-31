@@ -30,7 +30,7 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section  data-markdown>
+			<section data-markdown>
 				## [NMGIC](https://nmgic.com) 2019-11-01
 
 				### Visualizing Open Data
@@ -43,52 +43,56 @@
 				[ricegeo.dev](https://ricegeo.dev)
 			</section>
 			<section data-markdown>
-					### Preview
-	
-					Let's make this app!
-	
-					![screenshot](images/deployment-custom-domain.png "web app")
-				</section>
+				### Preview
+
+				Let's make this app! I'll explain the what and why...
+
+				![screenshot](images/deployment-custom-domain.png "web app")
+			</section>
 			<section>
 				<h3>Links</h3>
 				<small>
 					<table>
-							<thead>
-								<tr>
-									<th>Deployment</th>
-									<th>GitHub Repository</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a href="https://nmgic2019.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+						<thead>
+							<tr>
+								<th>Deployment</th>
+								<th>GitHub Repository</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="https://nmgic2019.ricegeo.dev" target="_blank" rel="noopener noreferrer">
 										nmgic2019.ricegeo.dev
 									</a></td>
-									<td><a href="https://github.com/guidorice/nmgic2019" target="_blank" rel="noopener noreferrer">
-											github.com/guidorice/nmgic2019
+								<td><a href="https://github.com/guidorice/nmgic2019" target="_blank"
+										rel="noopener noreferrer">
+										github.com/guidorice/nmgic2019
 									</a></td>
-								</tr>
-								<tr>
-									<td><a href="https://nmgic2019-presentation.ricegeo.dev" target="_blank" rel="noopener noreferrer">
+							</tr>
+							<tr>
+								<td><a href="https://nmgic2019-presentation.ricegeo.dev" target="_blank"
+										rel="noopener noreferrer">
 										nmgic2019-presentation.ricegeo.dev
 									</a></td>
-									<td><a href="https://github.com/guidorice/nmgic2019-presentation" target="_blank" rel="noopener noreferrer">
+								<td><a href="https://github.com/guidorice/nmgic2019-presentation" target="_blank"
+										rel="noopener noreferrer">
 										github.com/guidorice/nmgic2019-presentation
 									</a></td>
-								</tr>
-								
-							</tbody>
+							</tr>
+
+						</tbody>
 					</table>
-				</small>				
-			</section>		
+				</small>
+			</section>
 
 			<section data-markdown>
 				### Choosing a tech stack
 
-				- Build a production-ready website at practically no cost. [Netlify](https://netlify.com) and [Mapbox](https://www.mapbox.com/) both have free pricing tiers.
+				- Build a production-ready website at practically no cost. [Netlify](https://netlify.com) and
+				[Mapbox](https://www.mapbox.com/) both have free pricing tiers.
 				- Use Open Standards and Open Source Software, ensuring no vendor lock-in can occur.
-				-[React Js](https://reactjs.org/), 
-				[Mapbox GL Js](https://docs.mapbox.com/mapbox-gl-js/overview/), 
+				-[React Js](https://reactjs.org/),
+				[Mapbox GL Js](https://docs.mapbox.com/mapbox-gl-js/overview/),
 				and [TypeScript](https://www.typescriptlang.org/) are some of the most
 				widely used technologies for web apps today.
 			</section>
@@ -101,10 +105,10 @@
 			</section>
 
 			<section data-markdown>
-					[Analysis: FEMA Risk Map Products/Rio Chama
-					Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
-	
-					![flowchart](images/edac-workflow.png "EDAC workflow")
+				[Analysis: FEMA Risk Map Products/Rio Chama
+				Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
+
+				![flowchart](images/edac-workflow.png "EDAC workflow")
 			</section>
 
 			<section data-markdown>
@@ -139,8 +143,15 @@
 				- How does the workflow and algorithm effect results?
 			</section>
 
+			<section>
+				<h3>Explore the web app</h3>
+
+				<a href="https://nmgic2019.ricegeo.dev" target="_blank"
+					rel="noopener noreferrer">nmgic2019.ricegeo.dev</a>
+			</section>
+
 			<section data-markdown>
-				### Create free accounts with
+				### 🚀 Let's get started! Create free accounts with
 				- [Netlify](https://www.netlify.com/)
 				- [Mapbox](https://www.mapbox.com/)
 				- [GitHub (optional)](https://github.com/)
@@ -150,7 +161,8 @@
 				### Locally install required/recommended software
 				- [Node.Js](https://nodejs.org) for JavaScript runtime
 				- [Yarn](https://yarnpkg.com) or Npm* package manager
-				- [Tippecanoe](https://github.com/mapbox/tippecanoe) for building vector tilesets from large collections of GeoJSON features
+				- [Tippecanoe](https://github.com/mapbox/tippecanoe) for building vector tilesets from large collections
+				of GeoJSON features
 				- [Git](https://git-scm.com/) client (optional) for source version control
 				- [Visual Studio Code](https://code.visualstudio.com/) (optional) code editor
 
@@ -159,23 +171,23 @@
 			</section>
 
 			<section data-markdown>
-				### Download data and transform GeoJson files into mbtiles format using Tippecanoe
+				### Vector Tiles: Convert GeoJson files into mbtiles format using Tippecanoe
 
 				```bash
 				curl -O https://usbuildingdata.blob.core.windows.net/usbuildings-v1-1/NewMexico.zip
 				unzip NewMexico.zip
 				tippecanoe -zg -o microsoft.mbtiles \
-					--drop-densest-as-needed \
-					--extend-zooms-if-still-dropping \
-					NewMexico.geojson
+				--drop-densest-as-needed \
+				--extend-zooms-if-still-dropping \
+				NewMexico.geojson
 
 				curl -o edac.zip \
-					https://gstore.unm.edu/apps/rgis/datasets/2b858f98-72f0-4559-8933-3bed05a554e9/Rio_Chama_Watershed_Building_Footprints.derived.geojson
+				https://gstore.unm.edu/apps/rgis/datasets/2b858f98-72f0-4559-8933-3bed05a554e9/Rio_Chama_Watershed_Building_Footprints.derived.geojson
 				unzip edac.zip
 				tippecanoe -zg -o edac.mbtiles \
-					--drop-densest-as-needed \
-					--extend-zooms-if-still-dropping \
-					Rio_Chama_Watershed_Building_Footprints.geojson
+				--drop-densest-as-needed \
+				--extend-zooms-if-still-dropping \
+				Rio_Chama_Watershed_Building_Footprints.geojson
 				```
 			</section>
 
@@ -183,7 +195,6 @@
 				### Create Mapbox tilesets
 				At [studio.mapbox.com](https://studio.mapbox.com) create two
 				tilesets by uploading `edac.mbtiles`, `microsoft.mbtiles`.
-
 				![image](images/mapbox-tilesets.png "Mapbox Tilesets")
 			</section>
 
@@ -202,7 +213,7 @@
 				At [studio.mapbox.com](https://studio.mapbox.com) publish each style.
 
 				![image](images/mapbox-publish-style.png "Mapbox Styles")
-				</section>
+			</section>
 
 			<section data-markdown>
 				### 🗝 Create a Mapbox access token
@@ -238,7 +249,7 @@
 			</section>
 
 			<section data-markdown>
-				### 🥳 Congratulations you are a React.Js developer 
+				### 🥳 Congratulations you are a React.Js developer
 				![image](images/react-hello.png "Create React App")
 			</section>
 
@@ -248,79 +259,79 @@
 				`public/index.html`
 
 				```html
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-	&lt;head&gt;
-		&lt;meta charset="utf-8" /&gt;
-		&lt;link rel="icon" href="%PUBLIC_URL%/favicon.ico" /&gt;
-		&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
-		&lt;meta name="theme-color" content="#000000" /&gt;
-		&lt;meta
-			name="description"
-			content="Web site created using create-react-app"
-		/&gt;
-		&lt;link rel="apple-touch-icon" href="logo192.png" /&gt;
-		&lt;link rel="manifest" href="%PUBLIC_URL%/manifest.json" /&gt;
-		&lt;title&gt;React App&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;
-		&lt;div id="root"&gt;&lt;/div&gt;
-	&lt;/body&gt;
-&lt;/html&gt;
+				&lt;!DOCTYPE html&gt;
+				&lt;html lang="en"&gt;
+				&lt;head&gt;
+				&lt;meta charset="utf-8" /&gt;
+				&lt;link rel="icon" href="%PUBLIC_URL%/favicon.ico" /&gt;
+				&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+				&lt;meta name="theme-color" content="#000000" /&gt;
+				&lt;meta
+				name="description"
+				content="Web site created using create-react-app"
+				/&gt;
+				&lt;link rel="apple-touch-icon" href="logo192.png" /&gt;
+				&lt;link rel="manifest" href="%PUBLIC_URL%/manifest.json" /&gt;
+				&lt;title&gt;React App&lt;/title&gt;
+				&lt;/head&gt;
+				&lt;body&gt;
+				&lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;
+				&lt;div id="root"&gt;&lt;/div&gt;
+				&lt;/body&gt;
+				&lt;/html&gt;
 				```
 			</section>
 
-		<section data-markdown>
-			### Review create-react-app
+			<section data-markdown>
+				### Review create-react-app
 
-			`src/index.tsx`
+				`src/index.tsx`
 
-			```typescript
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+				```typescript
+				import React from 'react';
+				import ReactDOM from 'react-dom';
+				import './index.css';
+				import App from './App';
+				import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
-serviceWorker.unregister();		
-```
-		</section>
+				ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+				serviceWorker.unregister();
+				```
+			</section>
 
-		<section data-markdown>
-			### Review create-react-app
+			<section data-markdown>
+				### Review create-react-app
 
-			`src/App.tsx`
+				`src/App.tsx`
 
-			```typescript
-			import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+				```typescript
+				import React from 'react';
+				import logo from './logo.svg';
+				import './App.css';
 
-const App: React.FC = () =&gt; {
-  return (
-    &lt;div className="App"&gt;
-      &lt;header className="App-header"&gt;
-        &lt;img src={logo} className="App-logo" alt="logo" /&gt;
-        &lt;p&gt;
-          Edit &lt;code&gt;src/App.tsx&lt;/code&gt; and save to reload.
-        &lt;/p&gt;
-        &lt;a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        &gt;
-          Learn React
-        &lt;/a&gt;
-      &lt;/header&gt;
-    &lt;/div&gt;
-  );
-}
+				const App: React.FC = () =&gt; {
+				return (
+				&lt;div className="App"&gt;
+				&lt;header className="App-header"&gt;
+				&lt;img src={logo} className="App-logo" alt="logo" /&gt;
+				&lt;p&gt;
+				Edit &lt;code&gt;src/App.tsx&lt;/code&gt; and save to reload.
+				&lt;/p&gt;
+				&lt;a
+				className="App-link"
+				href="https://reactjs.org"
+				target="_blank"
+				rel="noopener noreferrer"
+				&gt;
+				Learn React
+				&lt;/a&gt;
+				&lt;/header&gt;
+				&lt;/div&gt;
+				);
+				}
 
-export default App;
-			```
+				export default App;
+				```
 			</section>
 
 
@@ -331,40 +342,40 @@ export default App;
 
 				```css
 				.App {
-					text-align: center;
+				text-align: center;
 				}
-				
+
 				.App-logo {
-					height: 40vmin;
+				height: 40vmin;
 				}
-				
+
 				.App-header {
-					background-color: #282c34;
-					min-height: 100vh;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					font-size: calc(10px + 2vmin);
-					color: white;
+				background-color: #282c34;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: calc(10px + 2vmin);
+				color: white;
 				}
-				
+
 				.App-link {
-					color: #09d3ac;
-				}			  
+				color: #09d3ac;
+				}
 				```
 			</section>
 
 			<section data-markdown>
-					### Add required JavaScript and TypeScript packages and restart development web server.
+				### Add required JavaScript and TypeScript packages and restart development web server.
 
-					```bash
-					yarn add mapbox-gl @types/mapbox-gl
-					export REACT_APP_MAPBOX_ACCESS_TOKEN=*****
-					yarn start
-					```
+				```bash
+				yarn add mapbox-gl @types/mapbox-gl
+				export REACT_APP_MAPBOX_ACCESS_TOKEN=*****
+				yarn start
+				```
 
-					Replace `*****` with your Mapbox access_token.
+				Replace `*****` with your Mapbox access_token.
 			</section>
 
 			<section data-markdown>
@@ -373,31 +384,31 @@ export default App;
 				`src/Map.tsx`
 
 				```typescript
-import React, { useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import mapboxOptions from './mapboxOptions';
-import './Map.css';
+				import React, { useEffect, useRef, useState } from 'react';
+				import mapboxgl from 'mapbox-gl';
+				import mapboxOptions from './mapboxOptions';
+				import './Map.css';
 
-mapboxgl.accessToken = 
-	process.env.REACT_APP_MAPBOX_ACCESS_TOKEN || '';
+				mapboxgl.accessToken =
+				process.env.REACT_APP_MAPBOX_ACCESS_TOKEN || '';
 
-const Map: React.FC = () =&gt; {
-	const [map, setMap] = useState&lt;mapboxgl.Map | null&gt;(null);
-	const mapContainer = useRef&lt;Element | null&gt;(null);
-	useEffect(() =&gt; {
-		if (!mapContainer || !mapContainer.current) return;
-		if (!map) {
-			const map = new mapboxgl.Map({ ...mapboxOptions, container: mapContainer.current });
-			map.on('load', () =&gt; { setMap(map); map.resize(); });
-		}
-	}, [map]);
+				const Map: React.FC = () =&gt; {
+				const [map, setMap] = useState&lt;mapboxgl.Map | null&gt;(null);
+				const mapContainer = useRef&lt;Element | null&gt;(null);
+				useEffect(() =&gt; {
+				if (!mapContainer || !mapContainer.current) return;
+				if (!map) {
+				const map = new mapboxgl.Map({ ...mapboxOptions, container: mapContainer.current });
+				map.on('load', () =&gt; { setMap(map); map.resize(); });
+				}
+				}, [map]);
 
-	return (
-		&lt;div ref={el =&gt; mapContainer.current = el} className="map-container" /&gt;
-	);
-}
+				return (
+				&lt;div ref={el =&gt; mapContainer.current = el} className="map-container" /&gt;
+				);
+				}
 
-export default Map;
+				export default Map;
 				```
 			</section>
 
@@ -407,10 +418,10 @@ export default Map;
 				- Never put an access_token in source code.
 				- Use an environment variable.
 				- Mapbox access_token can and should be restricted by scope and origin! See
-					[account.mapbox.com](https://account.mapbox.com).
+				[account.mapbox.com](https://account.mapbox.com).
 
 			</section>
-		
+
 			<section data-markdown>
 				### Gradual Typing with [Vscode](https://code.visualstudio.com/)
 
@@ -425,9 +436,9 @@ export default Map;
 
 				```css
 				.map-container {
-					width: 100vw;
-					height: 100vh;
-					position: absolute;
+				width: 100vw;
+				height: 100vh;
+				position: absolute;
 				}
 				```
 			</section>
@@ -441,16 +452,16 @@ export default Map;
 				import { MapboxOptions } from 'mapbox-gl';
 
 				const style: any = { // 🔥 relax the type checker
-					// 😭 4000 lines of configuration omitted 
+				// 😭 4000 lines of configuration omitted
 				};
 
 				const options: MapboxOptions = {
-					container: '',
-					center: [-106.5521572, 36.6989067], // tierra amarilla, nm
-					zoom: 16,
-					style,
+				container: '',
+				center: [-106.5521572, 36.6989067], // tierra amarilla, nm
+				zoom: 16,
+				style,
 				};
-				
+
 				export default options;
 				```
 			</section>
@@ -462,72 +473,73 @@ export default Map;
 
 				```json
 				{
-					"sources": {
-						"mapbox://mapbox.satellite": {
-							"url": "mapbox://mapbox.satellite",
-							"type": "raster",
-							"tileSize": 256
-						},
-						"composite": {
-							"url": "mapbox://mapbox.mapbox-streets-v8",
-							"type": "vector"
-						},
-						"microsoft-building-footprints": {
-							"url": "mapbox://agr.9gf1784j", 
-							"type": "vector",
-							"attribution": "© Microsoft under the Open Data Commons Open Database License (ODbL)"
-						},
-						"riochama-building-footprints": {
-							"url": "mapbox://agr.2xiolioq", 
-							"type": "vector",
-							"attribution": "© Shawn Penman, Earth Data Analysis Center"
-						}
-					},
-					"layers": [
-						{
-							"id": "background",
-							"type": "background",
-							"layout": {},
-							"paint": {"background-color": "black"}
-						},
-						{
-							"id": "satellite",
-							"type": "raster",
-							"source": "mapbox://mapbox.satellite",
-							"layout": {},
-							"paint": {}
-						},
-						{
-							"id": "microsoft-building-footprints",
-							"type": "line",
-							"source": "microsoft-building-footprints",
-							"source-layer": "NewMexico",
-							"paint": { "line-color": "hsl(223, 100%, 62%)", "line-width": 3 }
-						},
-						{
-							"id": "rio-chama-watershed-building-footprints",
-							"type": "line",
-							"source": "riochama-building-footprints",
-							"source-layer": "Rio_Chama_Watershed_Building_Footprints",
-							"paint": { "line-color": "hsl(63, 100%, 56%)", "line-width": 3 }
-						}
-					]
-				}						
+				"sources": {
+				"mapbox://mapbox.satellite": {
+				"url": "mapbox://mapbox.satellite",
+				"type": "raster",
+				"tileSize": 256
+				},
+				"composite": {
+				"url": "mapbox://mapbox.mapbox-streets-v8",
+				"type": "vector"
+				},
+				"microsoft-building-footprints": {
+				"url": "mapbox://agr.9gf1784j",
+				"type": "vector",
+				"attribution": "© Microsoft under the Open Data Commons Open Database License (ODbL)"
+				},
+				"riochama-building-footprints": {
+				"url": "mapbox://agr.2xiolioq",
+				"type": "vector",
+				"attribution": "© Shawn Penman, Earth Data Analysis Center"
+				}
+				},
+				"layers": [
+				{
+				"id": "background",
+				"type": "background",
+				"layout": {},
+				"paint": {"background-color": "black"}
+				},
+				{
+				"id": "satellite",
+				"type": "raster",
+				"source": "mapbox://mapbox.satellite",
+				"layout": {},
+				"paint": {}
+				},
+				{
+				"id": "microsoft-building-footprints",
+				"type": "line",
+				"source": "microsoft-building-footprints",
+				"source-layer": "NewMexico",
+				"paint": { "line-color": "hsl(223, 100%, 62%)", "line-width": 3 }
+				},
+				{
+				"id": "rio-chama-watershed-building-footprints",
+				"type": "line",
+				"source": "riochama-building-footprints",
+				"source-layer": "Rio_Chama_Watershed_Building_Footprints",
+				"paint": { "line-color": "hsl(63, 100%, 56%)", "line-width": 3 }
+				}
+				]
+				}
 				```
 			</section>
 
 			<section data-markdown>
 				### Workflow I used creating mapbox style module
 
-				- Go to [studio.mapbox.com](https://studio.mapbox.com) and 
+				- Go to [studio.mapbox.com](https://studio.mapbox.com) and
 				create a new style based on "Satellite Streets". This is the basemap.
 				It is composite of raster and vector layers.
 				- Download .zip file for each of the 3 styles you now have.
-					Unzip each.
-					Open each of the `.json` files.
+				Unzip each.
+				Open each of the `.json` files.
 				- With code editor, merge the `sources` and `layers` properties
-					into the Satellite Streets json module.
-				- Do not despair! [Mapbox Style Specification]( https://docs.mapbox.com/mapbox-gl-js/style-spec/) is an open standard.				 
+				into the Satellite Streets json module.
+				- Do not despair! [Mapbox Style Specification]( https://docs.mapbox.com/mapbox-gl-js/style-spec/) is an
+				open standard.
 			</section>
 
 			<section data-markdown>
@@ -543,33 +555,33 @@ export default Map;
 
 				```typescript
 				import React from 'react';
-import './Legend.css';
+				import './Legend.css';
 
-const Legend: React.FC = () =&gt; {
-    return (
-        &lt;div className="legend"&gt;
-            &lt;h3&gt;Rio Chama Watershed Building Footprints&lt;/h3&gt;
-            &lt;p&gt;
-                &lt;span className="edac-buildings-layer"&gt;&nbsp;&nbsp;&nbsp;&nbsp;
-                &lt;/span&gt;
-                &lt;a href="http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9"
-                    target="_blank" rel="noopener noreferrer"&gt;
-                    EDAC Building Footprints
-                &lt;/a&gt;
-            &lt;/p&gt;
-            &lt;p&gt;
-                &lt;span className="microsoft-buildings-layer"&gt;&nbsp;&nbsp;&nbsp;&nbsp;
-                &lt;/span&gt;
-                &lt;a href="https://github.com/Microsoft/USBuildingFootprints"
-                    target="_blank" rel="noopener noreferrer"&gt;
-                    Microsoft USBuildingFootprints
-                &lt;/a&gt;
-            &lt;/p&gt;
-        &lt;/div&gt;
-    );
-};
+				const Legend: React.FC = () =&gt; {
+				return (
+				&lt;div className="legend"&gt;
+				&lt;h3&gt;Rio Chama Watershed Building Footprints&lt;/h3&gt;
+				&lt;p&gt;
+				&lt;span className="edac-buildings-layer"&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/span&gt;
+				&lt;a href="http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9"
+				target="_blank" rel="noopener noreferrer"&gt;
+				EDAC Building Footprints
+				&lt;/a&gt;
+				&lt;/p&gt;
+				&lt;p&gt;
+				&lt;span className="microsoft-buildings-layer"&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+				&lt;/span&gt;
+				&lt;a href="https://github.com/Microsoft/USBuildingFootprints"
+				target="_blank" rel="noopener noreferrer"&gt;
+				Microsoft USBuildingFootprints
+				&lt;/a&gt;
+				&lt;/p&gt;
+				&lt;/div&gt;
+				);
+				};
 
-export default Legend;
+				export default Legend;
 				```
 			</section>
 
@@ -580,28 +592,28 @@ export default Legend;
 
 				```css
 				.legend {
-					position: absolute;
-					top: 2rem;
-					left: 2rem;
-					z-index: 1;
-					background-color: white;
-					padding-left: 0.5rem;
-					padding-right: 0.5rem;
-					font-size: 75%;
-					border-radius: 0.3rem;
+				position: absolute;
+				top: 2rem;
+				left: 2rem;
+				z-index: 1;
+				background-color: white;
+				padding-left: 0.5rem;
+				padding-right: 0.5rem;
+				font-size: 75%;
+				border-radius: 0.3rem;
 				}
-				
+
 				.microsoft-buildings-layer {
-					background-color: hsl(223, 100%, 62%);
-					border: solid grey 1px;
-					margin-right: 1rem;
+				background-color: hsl(223, 100%, 62%);
+				border: solid grey 1px;
+				margin-right: 1rem;
 				}
-				
+
 				.edac-buildings-layer {
-					background-color: hsl(63, 100%, 56%);
-					border: solid grey 1px;
-					margin-right: 1rem;
-				}				
+				background-color: hsl(63, 100%, 56%);
+				border: solid grey 1px;
+				margin-right: 1rem;
+				}
 				```
 			</section>
 
@@ -612,26 +624,26 @@ export default Legend;
 
 				```typescript
 				import React from 'react';
-import Map from './Map';
-import Legend from './Legend';
-import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
-// App.css is removed, it was not needed!
+				import Map from './Map';
+				import Legend from './Legend';
+				import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
+				// App.css is removed, it was not needed!
 
-const App: React.FC = () =&gt; {
-  return (
-    &lt;div&gt;
-      &lt;Legend /&gt;
-      &lt;Map /&gt;
-    &lt;/div&gt;
-  );
-};
-export default App;
+				const App: React.FC = () =&gt; {
+				return (
+				&lt;div&gt;
+				&lt;Legend /&gt;
+				&lt;Map /&gt;
+				&lt;/div&gt;
+				);
+				};
+				export default App;
 				```
 			</section>
 
 			<section data-markdown>
 				### 🎉 Preview it!
-				
+
 				Open browser at http://localhost:3000
 
 				![image](images/deployment-local.png "preview")
@@ -640,7 +652,10 @@ export default App;
 			<section data-markdown>
 				### 📦 Build for deployment
 
+				💡Do not forget to set your Mapbox access token environment variable!
+
 				```bash
+				export REACT_APP_MAPBOX_ACCESS_TOKEN=*****
 				yarn build
 				```
 
@@ -649,7 +664,7 @@ export default App;
 			</section>
 
 			<section data-background-image="https://media.giphy.com/media/ZcJ9RjNS2ShelvdMDX/giphy.gif">
-				<h2 style="color: white">"There is no serverless, it's just someone else's container!"</h2>				
+				<h2 style="color: white">"There is no serverless, it's just someone else's container!"</h2>
 			</section>
 
 			<section data-markdown>
@@ -659,17 +674,13 @@ export default App;
 
 				- Simply drag-n-drop your `build/` folder to create new Netlify site and deploy it.
 				- ⚡️️ Pro Tip: Connect a GitHub repository to your site for CI/CD.
-				  Every push to `master` will trigger a new build and deployment.
+				Every push to `master` will trigger a new build and deployment.
 			</section>
 
 			<section data-markdown>
-				### Add access token to Netlify build environment
+				### Aside, if using GitHub deployment instead of manual deployment, add access token to Netlify build
+				environment
 				![image](images/netlify-environment.png "netlify")
-				</section>
-
-			<section data-markdown>
-				### Re-deploy with environment variable set
-				![image](images/netlify-redeploy.png "netlify")
 			</section>
 
 			<section data-markdown>
@@ -685,7 +696,7 @@ export default App;
 
 				![image](images/deployment-custom-domain.png "netlify")
 			</section>
-			
+
 			<section data-markdown>
 				### Maybe try `react-map-gl`
 
@@ -700,9 +711,9 @@ export default App;
 				<h1 style="color: goldenrod">Denial of Wallet attack</h1>
 			</section>
 			<section data-markdown>
-				### 🏴‍☠️  DDOS vs. Denial of Wallet
+				### 🏴‍☠️ DDOS vs. Denial of Wallet
 
-				- Internet servers and gateways can be 
+				- Internet servers and gateways can be
 				susceptible to Denial of Service attacks:
 				https://en.wikipedia.org/wiki/Denial-of-service_attack
 
