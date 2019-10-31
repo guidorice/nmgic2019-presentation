@@ -101,7 +101,7 @@
 			</section>
 
 			<section data-markdown>
-					[Analysis: FEMA Risk Map Products/Rio Chama 1 of 2
+					[Analysis: FEMA Risk Map Products/Rio Chama
 					Watershed](http://rgis.unm.edu/rgis6/dataset.html?uuid=2b858f98-72f0-4559-8933-3bed05a554e9)
 	
 					![flowchart](images/edac-workflow.png "EDAC workflow")
@@ -140,7 +140,7 @@
 			</section>
 
 			<section data-markdown>
-				### Create free accounts:
+				### Create free accounts with
 				- [Netlify](https://www.netlify.com/)
 				- [Mapbox](https://www.mapbox.com/)
 				- [GitHub (optional)](https://github.com/)
@@ -148,10 +148,9 @@
 
 			<section data-markdown>
 				### Locally install required/recommended software
-				- [Node.Js](https://nodejs.org) JavaScript runtime
+				- [Node.Js](https://nodejs.org) for JavaScript runtime
 				- [Yarn](https://yarnpkg.com) or Npm* package manager
-				- [Tippecanoe](https://github.com/mapbox/tippecanoe) (works on Linux or OS X)
-				Builds vector tilesets from large collections of GeoJSON features.
+				- [Tippecanoe](https://github.com/mapbox/tippecanoe) for building vector tilesets from large collections of GeoJSON features
 				- [Git](https://git-scm.com/) client (optional) for source version control
 				- [Visual Studio Code](https://code.visualstudio.com/) (optional) code editor
 
@@ -442,7 +441,7 @@ export default Map;
 				import { MapboxOptions } from 'mapbox-gl';
 
 				const style: any = { // 🔥 relax the type checker
-					// 😭 4000 lines of code omitted 
+					// 😭 4000 lines of configuration omitted 
 				};
 
 				const options: MapboxOptions = {
@@ -518,7 +517,7 @@ export default Map;
 			</section>
 
 			<section data-markdown>
-				### Workflow I followed for creating mapbox style module
+				### Workflow I used creating mapbox style module
 
 				- Go to [studio.mapbox.com](https://studio.mapbox.com) and 
 				create a new style based on "Satellite Streets". This is the basemap.
@@ -575,7 +574,7 @@ export default Legend;
 			</section>
 
 			<section data-markdown>
-				### Create Legend component's CSS
+				### Create Legend component's CSS (TODO: make responsive, closeable)
 
 				`src/Legend.css`
 
@@ -728,7 +727,7 @@ export default App;
 
 				## Alex G Rice
 
-				https://ricegeo.dev
+				[ricegeo.dev](https://ricegeo.dev)
 			</section>
 		</div>
 
@@ -742,6 +741,7 @@ export default App;
 		// - https://github.com/hakimel/reveal.js#dependencies
 		Reveal.initialize({
 			transition: 'none',
+			slideNumber: true,
 			dependencies: [
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/marked.js' },
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/markdown/markdown.min.js' },
@@ -749,7 +749,7 @@ export default App;
 				{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/plugin/highlight/highlight.min.js', async: true }
 			]
 		});
-		// setTimeout(() => Reveal.slide(13), 200);
+		// setTimeout(() => Reveal.slide(31), 200);
 
 	</script>
 </body>
